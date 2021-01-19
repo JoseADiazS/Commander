@@ -6,7 +6,7 @@ namespace Commander.Data
     // Esta interfaz va a poseer todos los metodos crud que utilizara la app 
 	public interface ICommanderRepo
     {
-        IEnumerable<Command> GetAppCommands();
+        IEnumerable<Command> GetAllCommands();
 
         Command GetCommandById(int id); 
     }

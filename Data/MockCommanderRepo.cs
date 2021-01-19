@@ -6,7 +6,7 @@ namespace Commander.Data
     // Class that implement the Interface
     public class MockCommanderRepo : ICommanderRepo
     {
-        public IEnumerable<Command> GetAppCommands()
+        public IEnumerable<Command> GetAllCommands()
         {
             var commands = new List<Command> {
                 new Command{Id = 0, HowTo = "Boil an egg", Line = "Boil water", Plataform = "Kettle & Pan" },

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,7 +38,13 @@ namespace Commander
             // At this point we are using dependency injection with the inhection of our Interface
             // So whenever our app asks for one of these give it one of these
             // So if the back Information system changes, we only have to change the Mock Input
-            services.AddScoped<ICommanderRepo, MockCommanderRepo>();
+            //services.AddScoped<ICommanderRepo, MockCommanderRepo>();
+            services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
+
+            // Here we give the app the instruction of what DB System we are gonna to use, 
+            // and we give it the Connection Strign that we create on appsettings.json
+            services.AddDbContext<CommanderContext>(opt => opt.UseSqlServer(
+                Configuration.GetConnectionString("CommanderConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
