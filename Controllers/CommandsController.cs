@@ -17,8 +17,14 @@ namespace Commander.Controllers
     [ApiController]
     public class CommandsController : ControllerBase
     {
+        private readonly ICommanderRepo _repository;
 
-        private readonly MockCommanderRepo _repository = new MockCommanderRepo();
+        //In this fase, we create the constructor for the dependency injection
+        public CommandsController(ICommanderRepo repository)
+        {
+            _repository = repository;  
+        }
+        //private readonly MockCommanderRepo _repository = new MockCommanderRepo();
         // This clases define the Endpoints and we decorate it whit [HttpGet]
         // That define which actionresult respond to wich
         // GET api/commands/
